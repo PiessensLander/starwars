@@ -20,3 +20,7 @@ export type CharacterData = {
 	url: string;
 	vehicles: string[];
 };
+
+export type FilmTagProps = {
+	film: string;
+};

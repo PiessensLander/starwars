@@ -1,28 +1,32 @@
+'use client';
 import { Character } from '@/components/Character';
+import useSWR from 'swr';
+import axios from 'axios';
 
-async function getCharacters() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people`);
+const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
-	if (!res.ok) {
-		throw new Error('Failed to fetch data');
-	}
-
-	return res.json();
-}
-
-export default async function Page() {
-	const data = await getCharacters();
+export default function Page() {
+	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people`, fetcher);
 
 	if (data) {
 		console.log(data);
 	}
 
-	return (
-		<main>
-			{data.results.map((item: any) => {
-				console.log(typeof item);
-				return <Character key={item.name} character={item} />;
-			})}
-		</main>
-	);
+	if (data) {
+		return (
+			<main>
+				{data &&
+					data.results.map((item: any) => {
+						console.log(typeof item);
+						return <Character key={item.name} character={item} />;
+					})}
+			</main>
+		);
+	}
+
+	if (error) {
+		return <h1>Error fetching data. Please refresh the page.</h1>;
+	}
+
+	return <h1>Fetching data...</h1>;
 }
