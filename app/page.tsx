@@ -9,10 +9,8 @@ const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 export default function Page() {
 	const [pageIndex, setPageIndex] = useState(1);
 
-	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people?page=${pageIndex}`, fetcher);
+	const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people?page=${pageIndex}`, fetcher);
 	if (data) {
-		console.log(data);
-
 		return (
 			<main>
 				{data &&

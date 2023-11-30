@@ -6,7 +6,7 @@ export const Character = (props: CharacterType) => {
 		<div>
 			<h1>{props.character.name}</h1>
 			<div className='filmtags flex gap-4'>
-				{props.character.films.map((film) => {
+				{props.character.films.map((film: string) => {
 					return <FilmTag key={film} film={film} />;
 				})}
 			</div>
