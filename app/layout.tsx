@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +13,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<header className='flex justify-center'>
+					<a href='/'>
+						<Image src='/starwars.png' width={120} height={75} alt='Star Wars logo' priority />
+					</a>
+				</header>
+				{children}
+			</body>
 		</html>
 	);
 }

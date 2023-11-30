@@ -7,20 +7,13 @@ import { FilmTag } from '@/components/FilmTag';
 const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
 export default function CharacterDetailPage({ params }: { params: { id: string } }) {
-	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people/${params.id}`, fetcher);
+	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/films/${params.id}`, fetcher);
 
 	if (data) {
-		console.log(data);
 		return (
 			<div>
-				<h1>{data.name}</h1>
-				<div className='filmtags flex gap-4'>
-					{data.films.map((film: string) => {
-						return <FilmTag key={film} film={film} />;
-					})}
-				</div>
-				<p>Height: {data.height}cm</p>
-				<p>Birthyear: {data.birth_year}</p>
+				<h1>{data.title}</h1>
+				<p>{data.opening_crawl}</p>
 			</div>
 		);
 	}
