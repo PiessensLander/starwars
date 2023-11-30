@@ -14,7 +14,7 @@ export default function CharactersPage() {
 	if (data) {
 		return (
 			<main>
-				<div className='container mx-auto'>
+				<div className='container mx-auto px-6'>
 					<div className='grid grid-cols-12 gap-4'>
 						{data &&
 							data.results.map((item: any) => {

@@ -16,7 +16,7 @@ export const FilmTag = (props: FilmTagProps) => {
 
 		return (
 			<a href={`/films/${id}`}>
-				<span className='bg-amber-600 rounded-full px-4'>{data.title}</span>
+				<span className={`${id == 1 ? 'bg-orange-600' : id == 2 ? 'bg-amber-600' : id == 3 ? 'bg-yellow-600 text-black' : id == 4 ? 'bg-lime-600' : id == 5 ? 'bg-green-600' : id == 6 ? 'bg-emerald-600' : null}  rounded-full px-4`}>{data.title}</span>
 			</a>
 		);
 	}

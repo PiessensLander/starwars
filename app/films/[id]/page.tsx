@@ -9,8 +9,8 @@ export default function FilmDetailPage({ params }: { params: { id: string } }) {
 
 	if (data) {
 		return (
-			<div>
-				<h1>{data.title}</h1>
+			<div className='container mx-auto px-6'>
+				<h1 className='text-2xl text-yellow-300 font-bold text-center mb-4'>{data.title}</h1>
 				<p>{data.opening_crawl}</p>
 			</div>
 		);
