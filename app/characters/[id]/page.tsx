@@ -4,14 +4,13 @@ import axios from 'axios';
 
 const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
-export default function FilmDetailPage({ params }: { params: { id: string } }) {
-	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/films/${params.id}`, fetcher);
+export default function CharacterDetailPage({ params }: { params: { id: string } }) {
+	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people/${params.id}`, fetcher);
 
 	if (data) {
 		return (
 			<div>
-				<h1>{data.title}</h1>
-				<p>{data.opening_crawl}</p>
+				<h1>{data.name}</h1>
 			</div>
 		);
 	}
