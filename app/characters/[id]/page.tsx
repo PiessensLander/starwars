@@ -9,7 +9,6 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
 	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/people/${params.id}`, fetcher);
 
 	if (data) {
-		console.log(data);
 		return (
 			<div className=' container mx-auto px-6 mt-6'>
 				<h1 className='text-2xl text-yellow-300 font-bold text-center mb-4'>{data.name}</h1>
@@ -24,7 +23,7 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
 						<p>Birth year: {data.birth_year}</p>
 					</div>
 				</div>
-				<div className='movies'>
+				<div className='movies flex items-center flex-col py-6'>
 					<p>Movie(s):</p>
 					<div className='flex gap-4'>
 						{data.films.map((film: string) => {

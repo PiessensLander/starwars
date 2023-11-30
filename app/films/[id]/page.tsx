@@ -1,6 +1,7 @@
 'use client';
 import useSWR from 'swr';
 import axios from 'axios';
+import Image from 'next/image';
 
 const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
@@ -8,10 +9,14 @@ export default function FilmDetailPage({ params }: { params: { id: string } }) {
 	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/films/${params.id}`, fetcher);
 
 	if (data) {
+		console.log(data);
 		return (
-			<div className='container mx-auto px-6'>
-				<h1 className='text-2xl text-yellow-300 font-bold text-center mb-4'>{data.title}</h1>
-				<p>{data.opening_crawl}</p>
+			<div className='flex'>
+				<Image src={`/images/films/${params.id}.jpeg`} height={1000} width={250} alt='Movie Poster' className='h-screen min-h-[500px] w-auto relative ' />
+				<div className='container mx-auto px-6'>
+					<h1 className='text-2xl text-yellow-300 font-bold  mb-4'>{data.title}</h1>
+					<p>{data.opening_crawl}</p>
+				</div>
 			</div>
 		);
 	}
