@@ -2,6 +2,7 @@
 import useSWR from 'swr';
 import axios from 'axios';
 import Image from 'next/image';
+import { PuffLoader } from 'react-spinners';
 
 const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
@@ -21,7 +22,12 @@ export default function FilmDetailPage({ params }: { params: { id: string } }) {
 	}
 
 	if (isLoading) {
-		return <h1>Fetching data...</h1>;
+		return (
+			<div className='fixed h-full w-full flex flex-col items-center justify-center'>
+				<PuffLoader color='#FFE81F' speedMultiplier={0.75} />
+				<p className='text-neutral-500'>Loading...</p>
+			</div>
+		);
 	}
 
 	if (error) {
