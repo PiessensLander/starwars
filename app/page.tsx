@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import axios from 'axios';
 import { useState } from 'react';
 import { ArrowRight, ArrowLeft } from 'react-feather';
+import { PuffLoader } from 'react-spinners';
 
 const fetcher = (url: any) => axios.get(url).then((res) => res.data);
 
@@ -18,7 +19,6 @@ export default function CharactersPage() {
 					<div className='grid grid-cols-12 gap-4'>
 						{data &&
 							data.results.map((item: any) => {
-								console.log(typeof item);
 								return <Character key={item.name} character={item} />;
 							})}
 					</div>
@@ -53,5 +53,10 @@ export default function CharactersPage() {
 		return <h1>Error fetching data. Please refresh the page.</h1>;
 	}
 
-	return <h1>Fetching data...</h1>;
+	return (
+		<div className='fixed h-full w-full flex flex-col items-center justify-center'>
+			<PuffLoader color='#FFE81F' speedMultiplier={0.75} />
+			<p className='text-neutral-500'>Loading...</p>
+		</div>
+	);
 }

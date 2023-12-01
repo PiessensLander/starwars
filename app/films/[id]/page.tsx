@@ -9,7 +9,6 @@ export default function FilmDetailPage({ params }: { params: { id: string } }) {
 	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_SWAPI_BASE_URL}/films/${params.id}`, fetcher);
 
 	if (data) {
-		console.log(data);
 		return (
 			<div className='flex'>
 				<Image src={`/images/films/${params.id}.jpeg`} height={1000} width={250} alt='Movie Poster' className='h-screen min-h-[500px] w-auto relative ' />
