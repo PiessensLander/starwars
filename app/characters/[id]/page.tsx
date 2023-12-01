@@ -14,19 +14,19 @@ export default function CharacterDetailPage({ params }: { params: { id: string }
 			<div className='container mx-auto px-6 mt-6'>
 				<h1 className='text-2xl text-yellow-300 font-bold text-center mb-4'>{data.name}</h1>
 				<div className='grid grid-cols-12 text-center'>
-					<div className='col-span-4'>
+					<div className='col-span-12 md:col-span-4'>
 						<p>Height: {data.height}cm</p>
 					</div>
-					<div className='col-span-4'>
+					<div className='col-span-12 md:col-span-4'>
 						<p>Eye color: {data.eye_color}</p>
 					</div>
-					<div className='col-span-4'>
+					<div className='col-span-12 md:col-span-4'>
 						<p>Birth year: {data.birth_year}</p>
 					</div>
 				</div>
 				<div className='movies flex items-center flex-col py-6'>
 					<p>Movie(s):</p>
-					<div className='flex gap-4'>
+					<div className='flex gap-4 flex-wrap justify-center'>
 						{data.films.map((film: string) => {
 							return <FilmTag key={film} film={film} />;
 						})}

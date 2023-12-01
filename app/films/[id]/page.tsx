@@ -11,7 +11,7 @@ export default function FilmDetailPage({ params }: { params: { id: string } }) {
 
 	if (data) {
 		return (
-			<div className='flex'>
+			<div className='flex flex-col mb-6 md:flex-row'>
 				<Image src={`/images/films/${params.id}.jpeg`} height={1000} width={250} alt='Movie Poster' className='h-screen min-h-[500px] w-auto relative ' />
 				<div className='container mx-auto px-6'>
 					<h1 className='text-2xl text-yellow-300 font-bold  mb-4'>{data.title}</h1>
